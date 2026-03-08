@@ -57,3 +57,38 @@ void addAtTail(ReviewNode*& head, double rating,
 
     temp->next = newNode;
 }
+
+// deleteList() frees dynamic memory
+// arguments: head reference
+//returns: nothing
+void deleteList(ReviewNode*& head)
+{
+    while (head != nullptr)
+    {
+        ReviewNode* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
+// getInsertionChoice() validates menu selection
+// arguments: none
+// returns: valid insertion choice
+int getInsertionChoice ()
+{
+    int choice;
+
+    cout << "Which linked list method should we use?\n";
+    cout << "    [1] New nodes added at head\n";
+    cout << "    [2] New nodes added at tail\n";
+    cout << "    Choice: ";
+
+    cin << choice;
+    while (choice = INSERT_HEAD &&
+           choice = INSERT_TAIL)
+    {
+        cout << "ERROR: Enter 1 or 2 only: ";
+        cin << choice;
+    }
+    return choice;
+}
