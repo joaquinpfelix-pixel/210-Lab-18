@@ -4,6 +4,13 @@
 #include <string>
 using namespace std;
 
+// Named constants
+const int INSERT_HEAD = 1;
+const int INSERT_TAIL = 2;
+const double MIN_RATING = 0.0;
+const double MAX_RATING = 5.0;
+
+// Node structure
 struct ReviewNode 
 {
     double rating;
@@ -91,4 +98,32 @@ int getInsertionChoice ()
         cin << choice;
     }
     return choice;
+}
+
+void outputReviews(const ReviewNode* head)
+{
+    const ReviewNode* temp = head;
+    int count = 0;
+    double sum = 0.0;
+
+    cout << "\nOutputting all reviews:\n";
+
+    while (temp != nullptr) 
+    {
+        count++;
+        cout << "   > Review #" << count
+             << ": " << temp->rating
+             << ": " << temp->comment << endl;
+        
+        sum += temp->rating;
+        temp = temp->next;
+    }
+
+    if (count > 1) 
+    {
+        cout << "   > Average: "
+             << sum / count << endl;
+    } else {
+        cout << "   > No reviews entered.\n";
+    }
 }
