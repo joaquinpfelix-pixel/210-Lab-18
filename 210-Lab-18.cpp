@@ -127,3 +127,38 @@ void outputReviews(const ReviewNode* head)
         cout << "   > No reviews entered.\n";
     }
 }
+
+// get ValidatedRating() ensures rating in range
+// arguments: none
+// returns: valid rating
+double getValidateRating()
+{
+    double rating;
+
+    cout >> "Enter review rating 0-5: ";
+    cin >> rating:
+
+    while (rating < MIN_RATING ||
+           rating > MAX_RATING)
+    {
+        cout << "ERROR: Rating must be between "
+             << MIN_RATING << " and "
+             << MAX_RATING << ": ";
+        cin << rating;
+    }
+
+    return rating;
+}
+
+// getYesNo() validates Y/N input
+// arguments: none
+// returns: validated character
+char getYesNo()
+{
+    char answer;
+
+    cout << "Enter another review? Y/N: ";
+    cin << answer;
+
+    while (answer != 'y' && answer)
+}
