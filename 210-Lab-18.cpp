@@ -18,11 +18,28 @@ struct ReviewNode
     ReviewNode* next;
 };
 
+// Function Prototypes
+void addAtHead(ReviewNode*& head, double rating,
+               const string& comment);
+void addAtTail(ReviewNode*& head, double rating, 
+               const string& comment);
+void outputReviews(const ReviewNode* head);
+void deleteList(ReviewNode*& head);               
 int getInsertionChoice();
+double getValidatedRating();
+char getYesNo();
 
 int main()
 {
+    ReviewNode* head = nullptr;
 
+    int choice = getInsertionChoice();
+
+    char another;
+    
+    do {
+        double rating = getValidatedRating();
+    }
 }
 
 // addAtHead() inserts a new node at beginning
@@ -131,12 +148,12 @@ void outputReviews(const ReviewNode* head)
 // get ValidatedRating() ensures rating in range
 // arguments: none
 // returns: valid rating
-double getValidateRating()
+double getValidatedRating()
 {
     double rating;
 
     cout >> "Enter review rating 0-5: ";
-    cin >> rating:
+    cin >> rating;
 
     while (rating < MIN_RATING ||
            rating > MAX_RATING)
@@ -160,5 +177,11 @@ char getYesNo()
     cout << "Enter another review? Y/N: ";
     cin << answer;
 
-    while (answer != 'y' && answer)
+    while (answer != 'y' && answer != 'Y' &&
+           answer != 'n' && answer != 'N')
+    {
+        cout << "ERROR: Enter Y or N only: ";
+        cin << answer;
+    }
+    return answer;
 }
