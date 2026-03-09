@@ -39,7 +39,25 @@ int main()
     
     do {
         double rating = getValidatedRating();
-    }
+
+        cout << "Enter review comments: ";
+        cin.ignore();
+        string comment;
+        getline(cin, comment);
+
+        if (choice == INSERT_HEAD)
+        {
+            addAtHead(head, rating, comment);
+        } else {
+            addAtTail(head, rating, comment);
+        }
+        another = getYesNo();
+    } while (another == 'y' || another == 'Y');
+
+    outputReviews(head);
+    deleteList(head);
+
+    return 0;
 }
 
 // addAtHead() inserts a new node at beginning
@@ -107,12 +125,12 @@ int getInsertionChoice ()
     cout << "    [2] New nodes added at tail\n";
     cout << "    Choice: ";
 
-    cin << choice;
-    while (choice = INSERT_HEAD &&
-           choice = INSERT_TAIL)
+    cin >> choice;
+    while (choice != INSERT_HEAD &&
+           choice != INSERT_TAIL)
     {
         cout << "ERROR: Enter 1 or 2 only: ";
-        cin << choice;
+        cin >> choice;
     }
     return choice;
 }
@@ -152,7 +170,7 @@ double getValidatedRating()
 {
     double rating;
 
-    cout >> "Enter review rating 0-5: ";
+    cout << "Enter review rating 0-5: ";
     cin >> rating;
 
     while (rating < MIN_RATING ||
@@ -161,7 +179,7 @@ double getValidatedRating()
         cout << "ERROR: Rating must be between "
              << MIN_RATING << " and "
              << MAX_RATING << ": ";
-        cin << rating;
+        cin >> rating;
     }
 
     return rating;
@@ -175,13 +193,13 @@ char getYesNo()
     char answer;
 
     cout << "Enter another review? Y/N: ";
-    cin << answer;
+    cin >> answer;
 
     while (answer != 'y' && answer != 'Y' &&
            answer != 'n' && answer != 'N')
     {
         cout << "ERROR: Enter Y or N only: ";
-        cin << answer;
+        cin >> answer;
     }
     return answer;
 }
